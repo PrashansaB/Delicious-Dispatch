@@ -1,14 +1,16 @@
 import React from 'react'
 
-export const Card = () => {
+export const Card = (props) => {
+    const { name, description, img, options } = props;
+    let priceOptions = Object.keys(options)
     return (
         <div>
 
             <div className="card mt-3S" style={{ width: "18rem", maxHeight: "360px" }}>
-                <img className="card-img-top" src="..." alt="Card image cap" />
+                <img className="card-img-top" src={img} alt="Card image cap" />
                 <div className="card-body">
-                    <h5 className="card-title">Card title</h5>
-                    <p className="card-text">Some imp text.</p>
+                    <h5 className="card-title">{name}</h5>
+
                     <div className='container w-100' >
                         <select className='m-2 h-100  bg-success'>
                             {Array.from(Array(6), (e, i) => {
@@ -17,8 +19,9 @@ export const Card = () => {
                             })}
                         </select>
                         <select className='m-2 h-100  bg-success'>
-                            <option value="half">Half</option>
-                            <option value="full">Full</option>
+                            {priceOptions.map((data) => {
+                                return <option key={data} value={data}>data</option>
+                            })}
                         </select>
                         <div className='d-inline h-100 fs-5'>
                             Total price
